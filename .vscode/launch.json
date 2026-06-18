@@ -2,16 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "al",
-      "request": "launch",
-      "name": "BC Sandbox (configure manually)",
-      "server": "https://businesscentral.dynamics.com",
-      "serverInstance": "BC",
-      "authentication": "AAD",
-      "startupObjectType": "Page",
-      "startupObjectId": 50116,
-      "schemaUpdateMode": "Synchronize",
-      "tenant": "default"
+        "name": "Publish: Microsoft cloud sandbox",
+        "type": "al",
+        "request": "launch",
+        "environmentType": "Sandbox",
+        "environmentName": "Kore",
+        "breakOnError": "All",
+        "breakOnRecordWrite": "None",
+        "launchBrowser": true,
+        "enableSqlInformationDebugger": true,
+        "enableLongRunningSqlStatements": true,
+        "longRunningSqlStatementsThreshold": 500,
+        "numberOfSqlStatements": 10,
+        "tenant": "d2b03dfd-02ff-4ebc-87b5-b43c4f53ef7e",
+        "schemaUpdateMode": "ForceSync"
     }
   ]
 }
