@@ -66,3 +66,9 @@
 - **Decision**: Proposed architecture in `.github/plans/architecture.md` using Item tableextension for movies, custom rental header/line documents, custom master tables, TMDB integration codeunits, IntegrationEvents, role-based permission sets and AL test strategy.
 - **Rationale**: Keeps the solution SaaS-first, avoids modifying base objects, avoids unnecessary inventory/sales posting coupling, and separates UI, business logic and external integration.
 - **Impact**: Next step is user approval, then detailed AL specification and TDD implementation by conductor.
+
+### 2026-06-18 — Videoclub technical specification created
+- **Context**: The approved architecture in `.github/plans/architecture.md` needed an implementable AL blueprint for requirement `videoclub` with HIGH complexity.
+- **Decision**: Created `.github/plans/videoclub/videoclub.spec.md` with provisional object inventory, data model, codeunit signatures, own IntegrationEvents, pages, permissions proposal, Given/When/Then tests, acceptance criteria, open questions and TDD handoff.
+- **Rationale**: Provides a detailed implementation contract without creating AL objects, downloading symbols, compiling, publishing or connecting to Business Central.
+- **Impact**: Next step is human review/approval, confirmation of `app.json` ID range and BC runtime, then TDD implementation via `@AL Development Conductor`.
