@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "al",
+      "request": "launch",
+      "name": "BC Sandbox (configure manually)",
+      "server": "https://businesscentral.dynamics.com",
+      "serverInstance": "BC",
+      "authentication": "AAD",
+      "startupObjectType": "Page",
+      "startupObjectId": 50116,
+      "schemaUpdateMode": "Synchronize",
+      "tenant": "default"
+    }
+  ]
+}

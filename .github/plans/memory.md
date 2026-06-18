@@ -72,3 +72,9 @@
 - **Decision**: Created `.github/plans/videoclub/videoclub.spec.md` with provisional object inventory, data model, codeunit signatures, own IntegrationEvents, pages, permissions proposal, Given/When/Then tests, acceptance criteria, open questions and TDD handoff.
 - **Rationale**: Provides a detailed implementation contract without creating AL objects, downloading symbols, compiling, publishing or connecting to Business Central.
 - **Impact**: Next step is human review/approval, confirmation of `app.json` ID range and BC runtime, then TDD implementation via `@AL Development Conductor`.
+
+### 2026-06-18 — Videoclub AL project initialized
+- **Context**: The repository needed a Business Central AL project scaffold for approved requirement `videoclub` using `.github/prompts/al-initialize.prompt.md` as an initialization contract.
+- **Decision**: Created initial `app.json`, VS Code workspace settings/launch configuration, AL source/test folder structure and minimal VC-prefixed AL bootstrap objects for catalog, rental, TMDB, permissions and placeholder tests.
+- **Rationale**: Establishes the project structure and object range `50100..50149` without implementing full business logic, downloading symbols, compiling, publishing or connecting to a Business Central environment.
+- **Impact**: Runtime/platform/application values are reasonable defaults and remain pending human validation; symbol download, compilation and full TDD implementation remain pending next steps.
