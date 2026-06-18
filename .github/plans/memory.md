@@ -60,3 +60,9 @@
 
 1. {next action}
 2. {next action}
+
+### 2026-06-18 — Videoclub architecture proposed
+- **Context**: Functional requirements define a Business Central videoclub extension for movie catalog, actors, genres, rentals, returns and TMDB enrichment.
+- **Decision**: Proposed architecture in `.github/plans/architecture.md` using Item tableextension for movies, custom rental header/line documents, custom master tables, TMDB integration codeunits, IntegrationEvents, role-based permission sets and AL test strategy.
+- **Rationale**: Keeps the solution SaaS-first, avoids modifying base objects, avoids unnecessary inventory/sales posting coupling, and separates UI, business logic and external integration.
+- **Impact**: Next step is user approval, then detailed AL specification and TDD implementation by conductor.
