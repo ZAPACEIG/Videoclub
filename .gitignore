@@ -1,0 +1,23 @@
+# AL compiler outputs
+.alpackages/
+.alcache/
+.snapshots/
+rad.json
+*.app
+
+# VS Code local/runtime files
+.vscode/*.log
+
+# Build artifacts
+.netFramework/
+bin/
+obj/
+
+# Test results
+TestResults/
+*.trx
+
+# Temporary files
+*.tmp
+*.bak
+*~

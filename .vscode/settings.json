@@ -1,0 +1,18 @@
+{
+  "al.enableCodeAnalysis": true,
+  "al.codeAnalyzers": [
+    "${CodeCop}",
+    "${PerTenantExtensionCop}",
+    "${UICop}"
+  ],
+  "github.copilot.enable": {
+    "*": true,
+    "al": true
+  },
+  "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  }
+}
