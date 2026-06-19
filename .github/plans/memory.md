@@ -78,3 +78,21 @@
 - **Decision**: Created initial `app.json`, VS Code workspace settings/launch configuration, AL source/test folder structure and minimal VC-prefixed AL bootstrap objects for catalog, rental, TMDB, permissions and placeholder tests.
 - **Rationale**: Establishes the project structure and object range `50100..50149` without implementing full business logic, downloading symbols, compiling, publishing or connecting to a Business Central environment.
 - **Impact**: Runtime/platform/application values are reasonable defaults and remain pending human validation; symbol download, compilation and full TDD implementation remain pending next steps.
+
+### 2026-06-18 — Videoclub Phase 1 documentary alignment adjusted
+- **Context**: Human approval for Phase 2 identified a mismatch between the main implementation plan, which has 9 phases, and the test-plan matrix, which listed 8 execution rows after planning.
+- **Decision**: Updated `.github/plans/videoclub/videoclub.test-plan.md` so the Phase Test Matrix mirrors all 9 phases from `.github/plans/videoclub/videoclub-plan.md`.
+- **Rationale**: Keeps the TDD contract aligned before Phase 2 implementation begins.
+- **Impact**: This is a documentary Phase 1 adjustment only; no symbols were downloaded, no compilation was run, no publishing occurred, and no Business Central environment was contacted.
+
+### 2026-06-18 — Videoclub Phase 2 test foundation implemented
+- **Context**: Phase 2 was approved to create the minimum AL test foundation for subsequent TDD slices while avoiding symbol download, publish, BC connection and Phase 3+ implementation.
+- **Decision**: Added codeunit 50142 `Library - VC Videoclub`, expanded codeunit 50143 `VC Rental Tests` with RED Given/When/Then shell tests, and created the Phase 2 completion checkpoint.
+- **Rationale**: Provides fixture intent and executable TDD contracts for availability, rental validation, registration, returns and overdue behavior without implementing business logic.
+- **Impact**: Later phases must turn these RED contracts green by implementing catalog/rental logic and the future validation/status codeunits; compilation and runtime execution remain pending symbols and an approved test environment.
+
+### 2026-06-18 — Videoclub Phase 2 review corrections applied
+- **Context**: Phase 2 review returned NEEDS_REVISION for overdue contract wording, missing duplicate-return RED coverage, broad fixture cleanup, phase matrix wording and completion checkpoint status.
+- **Decision**: Updated the overdue RED test to use a dynamic pending contract without forcing persisted `Overdue`, added explicit duplicate-return RED coverage, narrowed `Initialize()` cleanup to `VC-TST-*` fixtures where viable, generalized the test-plan execution-status heading, and revised the Phase 2 checkpoint to be ready for re-review rather than auto-approved.
+- **Rationale**: Keeps Phase 2 conservative while the overdue persistence decision remains open and improves fixture safety for shared environments.
+- **Impact**: No symbols were downloaded, no compilation was run, no publishing occurred, and no Business Central environment was contacted; later phases still own GREEN implementations.

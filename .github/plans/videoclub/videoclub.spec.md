@@ -465,7 +465,7 @@ codeunit 50144 "VC TMDB Tests" { Subtype = Test; TestPermissions = Disabled; }
 | GivenOutstandingLine_WhenPartialReturn_ThenPartiallyReturned | Línea cantidad 2 pendiente. | Se devuelve 1. | Línea y cabecera parcialmente devueltas. |
 | GivenOutstandingLine_WhenFullReturn_ThenReturned | Línea cantidad 1 pendiente. | Se devuelve 1. | Línea Returned y cabecera Returned si no quedan pendientes. |
 | GivenReturnQtyExceedsOutstanding_WhenReturn_ThenError | Línea pendiente 1. | Se devuelve 2. | Error por exceso. |
-| GivenDueDatePast_WhenUpdateStatus_ThenOverdue | Alquiler registrado con vencimiento pasado. | Se recalcula estado. | Estado Overdue si se aprueba persistencia. |
+| GivenDueDatePast_WhenEvaluateOverdue_ThenDynamicContractWithoutPersistedStatus | Alquiler registrado vencido con cantidad pendiente. | Se evalúa vencimiento dinámicamente. | Se informa vencido sin forzar estado persistido `Overdue` mientras la decisión siga abierta. |
 | GivenTMDBDisabled_WhenSearch_ThenError | Setup TMDB deshabilitado. | Se busca película. | Error controlado y log Warning/Error. |
 | GivenTMDBPayload_WhenMapMovie_ThenFieldsMapped | JSON representativo local. | Se mapea. | Título, año, idioma, géneros y reparto normalizados. |
 | GivenTMDBImport_WhenApply_ThenMovieUpdated | Película existente y payload fake. | Se aplica importación. | Campos VC y reparto actualizados. |

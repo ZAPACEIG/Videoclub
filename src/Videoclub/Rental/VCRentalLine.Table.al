@@ -14,7 +14,13 @@ table 50105 "VC Rental Line"
         field(7; "Returned Quantity"; Decimal) { Caption = 'Returned Quantity'; DecimalPlaces = 0 : 0; MinValue = 0; }
         field(8; "Outstanding Qty."; Decimal) { Caption = 'Outstanding Qty.'; DecimalPlaces = 0 : 0; MinValue = 0; }
         field(9; Status; Enum "VC Rental Line Status") { Caption = 'Status'; }
+        field(10; Description; Text[100]) { Caption = 'Description'; DataClassification = CustomerContent; }
+        field(11; "Rental Date"; Date) { Caption = 'Rental Date'; DataClassification = CustomerContent; }
     }
 
-    keys { key(PK; "Rental No.", "Line No.") { Clustered = true; } }
+    keys
+    {
+        key(PK; "Rental No.", "Line No.") { Clustered = true; }
+        key(MovieStatus; "Movie Item No.", Status) { SumIndexFields = "Outstanding Qty."; }
+    }
 }
