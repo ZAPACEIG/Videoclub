@@ -1,8 +1,9 @@
-page 50119 "VC Rental List"
+page 50122 "VC Open Rentals"
 {
-  Caption = 'Videoclub Rentals';
+  Caption = 'Open Videoclub Rentals';
   PageType = List;
   SourceTable = "VC Rental Header";
+  SourceTableView = where(Status = filter(Registered | "Partially Returned"));
   UsageCategory = Lists;
   ApplicationArea = All;
   CardPageId = "VC Rental Document";
@@ -20,30 +21,6 @@ page 50119 "VC Rental List"
         field("Rental Date"; Rec."Rental Date") { ApplicationArea = All; ToolTip = 'Specifies the rental date.'; }
         field("Due Date"; Rec."Due Date") { ApplicationArea = All; ToolTip = 'Specifies the due date.'; }
         field(Status; Rec.Status) { ApplicationArea = All; ToolTip = 'Specifies the rental status.'; }
-        field("Registered Date"; Rec."Registered Date") { ApplicationArea = All; ToolTip = 'Specifies the date when the rental was registered.'; }
-      }
-    }
-  }
-
-  actions
-  {
-    area(Navigation)
-    {
-      action("VC Open Rentals")
-      {
-        ApplicationArea = All;
-        Caption = 'Open Rentals';
-        Image = List;
-        RunObject = page "VC Open Rentals";
-        ToolTip = 'Open the list of rentals with outstanding quantities.';
-      }
-      action("VC Overdue Rentals")
-      {
-        ApplicationArea = All;
-        Caption = 'Overdue Rentals';
-        Image = DueDate;
-        RunObject = page "VC Overdue Rentals";
-        ToolTip = 'Open the list of overdue rentals.';
       }
     }
   }

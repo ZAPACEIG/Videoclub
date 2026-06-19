@@ -13,4 +13,21 @@ table 50106 "VC TMDB Setup"
     }
 
     keys { key(PK; "Primary Key") { Clustered = true; } }
+
+    trigger OnInsert()
+    begin
+        ValidateSetup();
+    end;
+
+    trigger OnModify()
+    begin
+        ValidateSetup();
+    end;
+
+    local procedure ValidateSetup()
+    var
+        TMDBSetupMgt: Codeunit "VC TMDB Setup Mgt";
+    begin
+        TMDBSetupMgt.ValidateSetup(Rec);
+    end;
 }

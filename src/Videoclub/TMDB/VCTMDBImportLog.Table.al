@@ -16,4 +16,10 @@ table 50107 "VC TMDB Import Log"
     }
 
     keys { key(PK; "Entry No.") { Clustered = true; } }
+
+    trigger OnInsert()
+    begin
+        if "Created At" = 0DT then
+            "Created At" := CurrentDateTime();
+    end;
 }

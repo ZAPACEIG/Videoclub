@@ -53,16 +53,17 @@ The following require Business Central symbols and/or a test environment:
 
 ## 3. Phase Test Matrix
 
-| Phase | RED Tests | GREEN Target | Execution Status in Phase 1 |
+| Phase | RED Tests | GREEN Target | Execution Status |
 |---|---|---|---|
-| 1 — Planning and foundation validation | Document-only validation: missing plan/test-plan artifacts must be resolved. | `videoclub-plan.md`, `videoclub.test-plan.md`, and phase-1 completion file exist. | Static only. |
-| 2 — App structure and catalog foundation | Tests for creating a movie item, genres, actors and cast fixtures fail because objects/fields are absent or placeholders are incomplete. | Minimal catalog tables, item extension fields and helper procedures exist. | Pending approval. |
-| 3 — Availability logic | Availability tests fail because calculation codeunit and open-rental data model are not complete. | Available quantity equals rental copies minus outstanding registered quantities. | Pending approval. |
-| 4 — Rental document registration | Registration validation tests fail for missing customer, no lines, non-rentable movie and insufficient copies. | Minimal header/line tables, status enums and registration codeunit enforce validations. | Pending approval. |
-| 5 — Returns and overdue behavior | Return tests fail for partial, full, excess and duplicate return cases. | Return code updates quantities, dates and statuses; overdue behavior follows approved decision. | Pending approval. |
-| 6 — Pages and navigation | Page-focused review/tests fail because pages/actions are absent. | Minimal list/card/document pages and safe actions call codeunits. | Pending approval. |
-| 7 — Permissions | Permission review/tests fail because permission sets are absent. | READ/USER/ADMIN/BASE permission sets match matrix. | Pending approval. |
-| 8 — TMDB integration shell | TMDB tests fail because setup, log and integration codeunits are absent/incomplete. | Setup/log/mapper facade are introduced with fakeable boundaries; live HTTP remains gated by decisions. | Pending approval. |
+| 1 — Planning, Test Strategy and Structure Baseline | Document-only validation: missing plan/test-plan artifacts must be resolved. | `videoclub-plan.md`, `videoclub.test-plan.md`, and phase-1 completion file exist. | Static only; complete. |
+| 2 — Foundation / Setup / App Structure Validation | Helper/test shell procedures establish fixture intent and reference future catalog/rental capabilities; compile/runtime validation is expected to remain RED until symbols and later objects exist. | Test helper 50142, rental test shell 50143, source/test folder structure, and common test intent exist without business logic. | Approved to start after Phase 1. |
+| 3 — Catalog: Genres, Actors, Movies and Item Extension | Tests for creating a movie item, genres, actors and cast fixtures fail because catalog objects/fields are absent or incomplete. | Minimal catalog tables, Item extension fields, movie management codeunit and catalog pages/helpers exist. | Pending Phase 2 gate. |
+| 4 — Availability and Minimal Rental Logic | Availability tests fail because calculation codeunit and open-rental data model are not complete. | Available quantity equals rental copies minus outstanding registered quantities, with availability assertions. | Pending Phase 3 gate. |
+| 5 — Rental Header/Lines and Registration | Registration validation tests fail for missing customer, no lines, non-rentable movie, insufficient copies and draft registration. | Minimal header/line tables, status enums and registration codeunits enforce validations and status transitions. | Pending Phase 4 gate. |
+| 6 — Returns, Partial Returns and Overdue Handling | Return tests fail for partial, full, excess and duplicate return cases; overdue behavior is unresolved until slice implementation. | Return code updates quantities, dates and statuses; overdue behavior follows conservative dynamic calculation unless an approved decision exists. | Pending Phase 5 gate. |
+| 7 — Pages and Navigation | Page-focused review/tests fail because user workflows are not exposed through pages/actions. | Minimal list/card/document/listpart pages and safe actions call codeunits; Role Center extension remains pending unless the base page is confirmed. | Pending Phase 6 gate. |
+| 8 — Permissions | Permission review/tests fail because permission sets are absent. | READ/USER/ADMIN/BASE permission sets match the functional matrix and object inventory. | Pending Phase 7 gate. |
+| 9 — TMDB Integration as Separate Gated Slice | TMDB disabled/search/map/apply tests fail because setup, log and fakeable integration boundaries are absent/incomplete. | Setup/log/mapper/facade are introduced with fakeable payload boundaries; live HTTP remains gated and untested. | Pending Phase 8 gate. |
 
 ## 4. Core Given/When/Then Scenarios
 
@@ -78,7 +79,8 @@ The following require Business Central symbols and/or a test environment:
 | `GivenOutstandingLine_WhenPartialReturn_ThenPartiallyReturned` | A registered line has quantity 2 outstanding. | One copy is returned. | Line/header are partially returned. |
 | `GivenOutstandingLine_WhenFullReturn_ThenReturned` | A registered line has quantity 1 outstanding. | One copy is returned. | Line/header are returned if no outstanding quantity remains. |
 | `GivenReturnQtyExceedsOutstanding_WhenReturn_ThenError` | One copy is outstanding. | Two copies are returned. | A controlled excess-return error is raised. |
-| `GivenDueDatePast_WhenUpdateStatus_ThenOverdue` | A registered rental has due date before work date. | Status is recalculated. | Status is Overdue if persisted overdue is approved; otherwise page/query exposes it dynamically. |
+| `GivenReturnedLine_WhenDuplicateReturn_ThenError` | One copy was already fully returned and no outstanding quantity remains. | A second return is requested. | A controlled duplicate/excess-return error is raised. |
+| `GivenDueDatePast_WhenEvaluateOverdue_ThenDynamicContractWithoutPersistedStatus` | A registered rental has due date before work date and remains outstanding. | Dynamic overdue evaluation is requested. | The rental is reported overdue without forcing persisted `Overdue` status while the decision remains open. |
 | `GivenTMDBDisabled_WhenSearch_ThenError` | TMDB setup is disabled. | Search is requested. | A controlled error/log entry is produced. |
 | `GivenTMDBPayload_WhenMapMovie_ThenFieldsMapped` | A local JSON payload is available. | Mapper runs. | Movie fields, genres and cast are normalized. |
 | `GivenTMDBImport_WhenApply_ThenMovieUpdated` | A movie and fake normalized payload exist. | Import application runs. | Existing movie fields and cast are updated according to overwrite rules. |
